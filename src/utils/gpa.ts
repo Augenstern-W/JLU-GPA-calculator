@@ -53,10 +53,10 @@ export interface ParseResult {
   message?: string;
 }
 
-/** 解析教务系统导出的成绩 xlsx（严格校验表头，格式不符直接报错） */
-export function parseScoreXlsx(data: ArrayBuffer): ParseResult {
+/** 解析教务系统导出的成绩 xlsx（严格校验表头，格式不符直接报错）。data 为文件内容的 base64 字符串 */
+export function parseScoreXlsx(data: string): ParseResult {
   try {
-    const wb = XLSX.read(data, { type: 'array' });
+    const wb = XLSX.read(data, { type: 'base64' });
     const sheet = wb.Sheets[wb.SheetNames[0]];
     const rows = XLSX.utils.sheet_to_json<string[]>(sheet, { header: 1, defval: '' });
     if (!rows.length) {

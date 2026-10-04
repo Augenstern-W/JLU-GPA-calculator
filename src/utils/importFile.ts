@@ -2,7 +2,8 @@ import Taro from '@tarojs/taro';
 
 export interface PickResult {
   ok: boolean;
-  data?: ArrayBuffer;
+  /** 文件内容的 base64 字符串（小程序 ArrayBuffer 兼容性差，统一走 base64） */
+  data?: string;
   fileName?: string;
   errMsg?: string;
 }
@@ -25,7 +26,8 @@ export async function pickXlsxFile(): Promise<PickResult> {
       if (!/\.xlsx$/i.test(file.name)) {
         return { ok: false, errMsg: '请选择 .xlsx 格式的成绩文件' };
       }
-      const data = Taro.getFileSystemManager().readFileSync(file.path);
+      // base64 读取：绕开微信基础库 ArrayBuffer 与 SheetJS 的兼容问题
+      const data = Taro.getFileSystemManager().readFileSync(file.path, 'base64') as string;
       return { ok: true, data, fileName: file.name };
     } catch (e) {
       const msg = (e as { errMsg?: string }).errMsg || '';
@@ -46,10 +48,14 @@ export async function pickXlsxFile(): Promise<PickResult> {
         return resolve({ ok: false, errMsg: '请选择 .xlsx 格式的成绩文件' });
       }
       const reader = new FileReader();
-      reader.onload = () =>
-        resolve({ ok: true, data: reader.result as ArrayBuffer, fileName: file.name });
+      reader.onload = () => {
+        // dataURL 形如 data:...;base64,xxxx，取逗号后的 base64 部分
+        const result = String(reader.result || '');
+        const base64 = result.slice(result.indexOf(',') + 1);
+        resolve({ ok: true, data: base64, fileName: file.name });
+      };
       reader.onerror = () => resolve({ ok: false, errMsg: '读取文件失败，请重试' });
-      reader.readAsArrayBuffer(file);
+      reader.readAsDataURL(file);
     };
     input.click();
   });
