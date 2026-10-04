@@ -1,0 +1,24 @@
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+
+# Taro / 编译工具缓存
+.taro-home/
+.swc/
+.swc/plugins/
+
+# IDE / 工具运行时文件
+.pai/
+*.log
+
+# 微信开发者工具个人配置
+project.private.config.json
+
+# 含 AppID，不入库（模板见 project.config.json.example）
+project.config.json
+
+# 系统文件
+.DS_Store
+Thumbs.db

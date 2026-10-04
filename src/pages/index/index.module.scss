@@ -1,0 +1,409 @@
+@use '@/styles/variables.scss' as *;
+
+.container {
+  min-height: 100vh;
+  padding: 80rpx $page-padding 60rpx;
+  background-color: $color-bg-page;
+  box-sizing: border-box;
+}
+
+// ---------- 卡片通用 ----------
+.card {
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: 32rpx;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.headerBar {
+  width: 8rpx;
+  height: 32rpx;
+  border-radius: $radius-xs;
+  background-color: $color-primary;
+  margin-right: $spacing-sm;
+}
+
+.cardTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.subTitle {
+  margin-left: auto;
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+// ---------- 导入卡片 ----------
+.hint {
+  display: block;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-loose;
+  margin-bottom: $spacing-md;
+}
+
+.eduBtn {
+  height: $button-height-md;
+  border-radius: $radius-button;
+  background-color: $color-bg-card;
+  border: 2rpx solid $color-primary;
+  @include flex-center;
+  margin-bottom: $spacing-sm;
+
+  &:active {
+    opacity: 0.85;
+  }
+}
+
+.eduBtnText {
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  color: $color-primary;
+}
+
+.importBtn {
+  height: $button-height-md;
+  border-radius: $radius-button;
+  background-color: $color-primary-bg;
+  border: 2rpx solid $color-primary;
+  @include flex-center;
+
+  &:active {
+    opacity: 0.85;
+  }
+}
+
+.importBtnText {
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  color: $color-primary;
+}
+
+.fileName {
+  display: block;
+  margin-top: $spacing-sm;
+  font-size: $font-size-xs;
+  color: $color-success;
+  @include text-ellipsis;
+}
+
+.fileEmpty {
+  display: block;
+  margin-top: $spacing-sm;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+// ---------- 课程明细列表 ----------
+.listScroll {
+  max-height: 640rpx;
+}
+
+.listHead,
+.listRow {
+  display: flex;
+  align-items: center;
+}
+
+.listHead {
+  padding: $spacing-xs 0;
+  border-bottom: 2rpx solid $color-divider;
+
+  .colNum,
+  .colDel {
+    font-size: $font-size-xs;
+    color: $color-text-tertiary;
+  }
+}
+
+.listRow {
+  padding: $spacing-sm 0;
+  border-bottom: 2rpx solid $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.colName {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.courseName {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.courseTerm {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-top: 4rpx;
+  @include text-ellipsis;
+}
+
+.colNum {
+  width: 96rpx;
+  text-align: center;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  flex-shrink: 0;
+}
+
+.jdPending {
+  color: $color-warning;
+}
+
+.colDel {
+  width: 56rpx;
+  height: 56rpx;
+  @include flex-center;
+  flex-shrink: 0;
+}
+
+.delText {
+  font-size: $font-size-md;
+  color: $color-text-disabled;
+}
+
+.colDel:active .delText {
+  color: $color-error;
+}
+
+.listHead .colDel {
+  height: auto;
+}
+
+// ---------- 清空按钮（课程明细与手动添加之间） ----------
+.clearAllBtn {
+  height: $button-height-lg;
+  border-radius: $radius-button;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  box-shadow: 0 8rpx 24rpx rgba(0, 63, 149, 0.35);
+  @include flex-center;
+  margin: $spacing-md 0;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+}
+
+.clearAllText {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-white;
+  letter-spacing: 4rpx;
+}
+
+// ---------- 手动添加表单 ----------
+.formGrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -12rpx;
+}
+
+.formItem {
+  width: 50%;
+  padding: 0 12rpx $spacing-sm;
+  box-sizing: border-box;
+}
+
+.formItemWide {
+  width: 100%;
+  padding: 0 12rpx $spacing-sm;
+  box-sizing: border-box;
+}
+
+.formLabel {
+  display: block;
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.input {
+  height: 72rpx;
+  padding: 0 $spacing-sm;
+  border: 2rpx solid $color-border;
+  border-radius: $radius-sm;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  background-color: $color-bg-card;
+  box-sizing: border-box;
+}
+
+.placeholder {
+  color: $color-text-disabled;
+  font-size: $font-size-sm;
+}
+
+.formHint {
+  display: block;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin: $spacing-xs 0 $spacing-sm;
+}
+
+.addBtn {
+  height: $button-height-sm;
+  border-radius: $radius-sm;
+  background-color: $color-primary-bg;
+  @include flex-center;
+
+  &:active {
+    opacity: 0.85;
+  }
+}
+
+.addBtnText {
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  color: $color-primary;
+}
+
+// ---------- 计算按钮 ----------
+.calcBtn {
+  height: $button-height-lg;
+  border-radius: $radius-button;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  box-shadow: 0 8rpx 24rpx rgba(0, 63, 149, 0.35);
+  @include flex-center;
+  margin: $spacing-md 0;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+}
+
+.calcBtnText {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-white;
+  letter-spacing: 4rpx;
+}
+
+// ---------- 计算结果 ----------
+.resultMain {
+  @include flex-center;
+  flex-direction: column;
+  padding: $spacing-md 0 $spacing-lg;
+}
+
+.gpaLabel {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+  margin-bottom: $spacing-sm;
+}
+
+.gpaValue {
+  font-size: 72rpx;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  line-height: $line-height-tight;
+  font-family: 'DIN Alternate', Menlo, monospace;
+}
+
+.resultMeta {
+  display: flex;
+  align-items: center;
+  margin-top: $spacing-sm;
+}
+
+.metaItem {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.metaDivider {
+  margin: 0 $spacing-sm;
+  color: $color-border;
+}
+
+.pendingTip {
+  background-color: #fff7ed;
+  border-radius: $radius-sm;
+  padding: $spacing-sm $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.pendingTipText {
+  font-size: $font-size-xs;
+  color: $color-warning;
+}
+
+.termSection {
+  border-top: 2rpx solid $color-divider;
+  padding-top: $spacing-md;
+}
+
+.termTitle {
+  display: block;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.termRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-sm 0;
+  border-bottom: 2rpx solid $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.termInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.termName {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.termMeta {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-top: 4rpx;
+}
+
+.termGpa {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  flex-shrink: 0;
+  margin-left: $spacing-sm;
+  font-family: 'DIN Alternate', Menlo, monospace;
+}
+
+// ---------- 页脚 ----------
+.footer {
+  display: block;
+  text-align: center;
+  font-size: $font-size-xs;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: $spacing-lg;
+}

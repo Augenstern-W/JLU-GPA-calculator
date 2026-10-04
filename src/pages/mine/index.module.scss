@@ -1,0 +1,141 @@
+@use '@/styles/variables.scss' as *;
+
+.container {
+  min-height: 100vh;
+  padding: 80rpx $page-padding 60rpx;
+  background-color: $color-bg-page;
+  box-sizing: border-box;
+}
+
+.card {
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: 32rpx;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.headerBar {
+  width: 8rpx;
+  height: 32rpx;
+  border-radius: $radius-xs;
+  background-color: $color-primary;
+  margin-right: $spacing-sm;
+}
+
+.cardTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+// ---------- 数据管理 ----------
+.statRow {
+  display: flex;
+  margin-bottom: $spacing-md;
+}
+
+.statItem {
+  flex: 1;
+  @include flex-center;
+  flex-direction: column;
+  background-color: $color-primary-bg;
+  border-radius: $radius-md;
+  padding: $spacing-md 0;
+}
+
+.statValue {
+  font-size: 56rpx;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  line-height: $line-height-tight;
+  font-family: 'DIN Alternate', Menlo, monospace;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  margin-top: $spacing-xs;
+}
+
+.clearBtn {
+  height: $button-height-sm;
+  border-radius: $radius-sm;
+  border: 2rpx solid $color-error;
+  @include flex-center;
+
+  &:active {
+    opacity: 0.85;
+  }
+}
+
+.clearBtnText {
+  font-size: $font-size-md;
+  color: $color-error;
+}
+
+// ---------- 说明 ----------
+.noteRow {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: $spacing-sm;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.noteDot {
+  color: $color-primary;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+  margin-right: $spacing-xs;
+  flex-shrink: 0;
+}
+
+.noteText {
+  flex: 1;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-loose;
+}
+
+// ---------- 关于 ----------
+.aboutRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-sm 0;
+  border-bottom: 2rpx solid $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.aboutLabel {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+}
+
+.aboutValue {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
+}
+
+// ---------- 页脚 ----------
+.footer {
+  display: block;
+  text-align: center;
+  font-size: $font-size-xs;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: $spacing-lg;
+}

@@ -1,0 +1,175 @@
+@use '@/styles/variables.scss' as *;
+
+.container {
+  min-height: 100vh;
+  padding: 80rpx $page-padding 60rpx;
+  background-color: $color-bg-page;
+  box-sizing: border-box;
+}
+
+.card {
+  background-color: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: 32rpx;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.headerBar {
+  width: 8rpx;
+  height: 32rpx;
+  border-radius: $radius-xs;
+  background-color: $color-primary;
+  margin-right: $spacing-sm;
+}
+
+.cardTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.subTitle {
+  margin-left: auto;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+// ---------- 使用步骤 ----------
+.stepRow {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: $spacing-md;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.stepNum {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: $radius-round;
+  background-color: $color-primary;
+  @include flex-center;
+  flex-shrink: 0;
+  margin-right: $spacing-sm;
+  margin-top: 2rpx;
+}
+
+.stepNumText {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-text-white;
+}
+
+.stepBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.stepTitle {
+  display: block;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+  margin-bottom: 4rpx;
+}
+
+.stepDesc {
+  display: block;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-loose;
+}
+
+// ---------- 换算表 ----------
+.tableHead,
+.tableRow {
+  display: flex;
+  align-items: center;
+}
+
+.tableHead {
+  padding: $spacing-xs 0;
+  border-bottom: 2rpx solid $color-border;
+
+  .thScore,
+  .thJd {
+    font-size: $font-size-xs;
+    color: $color-text-tertiary;
+  }
+}
+
+.tableRow {
+  padding: $spacing-sm 0;
+  border-bottom: 2rpx solid $color-divider;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.tableRowAlt {
+  background-color: $color-primary-bg;
+  margin: 0 -16rpx;
+  padding-left: 16rpx;
+  padding-right: 16rpx;
+  border-radius: $radius-xs;
+}
+
+.thScore,
+.tdScore {
+  flex: 1;
+}
+
+.thJd,
+.tdJd {
+  width: 120rpx;
+  text-align: center;
+}
+
+.tdScore {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+}
+
+.tdJd {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  font-family: 'DIN Alternate', Menlo, monospace;
+}
+
+// ---------- 注意事项 ----------
+.noteRow {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: $spacing-sm;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.noteDot {
+  color: $color-primary;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+  margin-right: $spacing-xs;
+  flex-shrink: 0;
+}
+
+.noteText {
+  flex: 1;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-loose;
+}
