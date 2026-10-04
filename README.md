@@ -1,103 +1,54 @@
-# 吉大绩点计算器
+# JLU GPA Calculator
 
-> 面向吉林大学学生的绩点（GPA）计算工具。一套代码，三种使用方式：微信小程序 / 在线网页 / 本地离线网页。
-> **个人自用项目**，纯前端本地运行，无后端、无联网请求、不收集任何数据。
+吉林大学绩点计算器，自己写着用的小工具。
 
-## 功能
+导入教务系统导出的成绩单 Excel（`XX成绩查询.xlsx`），自动算加权平均分和绩点（4.0 满绩），也可以手动加课、删课，百分制成绩自动换算。纯前端本地计算，不上传任何数据。
 
-- 导入教务系统导出的成绩单 Excel（`XX成绩查询.xlsx`），严格校验 21 列表头，自动识别课程 / 学分 / 成绩
-- 支持手动添加、删除课程，手动修正识别结果
-- 加权平均分与绩点计算：GPA 保留 5 位小数，课程明细绩点保留 1 位小数（满绩 4.0）
-- 百分制成绩自动换算绩点，等级制成绩（优 / 良 / 中…）可手动填写绩点
-- 课程明细支持按学期筛选
-- 数据仅存于浏览器 / 小程序本地存储，随时可清空
+一套代码（Taro + React），编译成微信小程序和网页两个版本。
 
 ## 截图
 
-**网页版：**
+网页版（计算 / 指南 / 我的）：
 
-![网页版](docs/images/web.png)
+![web-calc](docs/images/web-calc.png)
 
-**微信小程序版：**
+![web-guide](docs/images/web-guide.png)
 
-![小程序版](docs/images/weapp.png)
+![web-mine](docs/images/web-mine.png)
 
-## 项目结构
+小程序版：
+
+![weapp](docs/images/weapp.png)
+
+## 怎么用
+
+- 网页版：`npm run build:h5` 之后双击 `dist/h5/index.html` 就能用，不用起服务，也可以把 dist/h5 文件夹压缩发给别人
+- 小程序版：`npm run build:weapp` 后用微信开发者工具导入项目根目录（`project.config.json` 不入库，复制 `project.config.json.example` 改个名，填上自己的 AppID）
+- 导入的文件必须是教务系统「成绩查询」导出的 `XX成绩查询.xlsx`，表头（21 列）别动，改了会识别不出来
+
+## 本地运行
 
 ```
-.
-├── src/                        # 源码
-│   ├── pages/
-│   │   ├── index/              # 计算页：导入成绩单、课程明细、手动添加、计算结果
-│   │   ├── guide/              # 指南页：使用步骤与注意事项
-│   │   └── mine/               # 我的页：开发者信息、清空本地数据
-│   ├── utils/
-│   │   ├── gpa.ts              # Excel 解析（21 列表头校验）与绩点计算
-│   │   ├── importFile.ts       # 文件导入（小程序从聊天记录选文件 / 网页从本地选文件）
-│   │   └── storage.ts          # 课程数据本地存储
-│   ├── styles/                 # 主题变量（吉大蓝 #003F95）与通用样式
-│   ├── assets/tabbar/          # 小程序底部导航图标
-│   ├── types/course.ts         # 课程 / 表单类型定义
-│   ├── app.tsx                 # 应用入口
-│   ├── app.config.ts           # 全局配置（页面注册、tabBar）
-│   └── index.html              # H5 模板
-├── config/
-│   └── index.ts                # Taro 构建配置（H5 使用相对路径，支持本地双击打开）
-├── dist/                       # 构建产物（git 忽略，构建生成）
-├── project.config.json         # 微信小程序项目配置
-└── package.json
-```
-
-## 技术栈
-
-Taro 4.1.9 + React 18 + TypeScript + SCSS Modules + [xlsx](https://github.com/SheetJS/sheetjs)（Excel 解析）
-
-## 使用方式
-
-### 方式一：微信小程序
-
-代码上传至微信小程序后台后，在微信内搜索/扫码使用。导入文件流程：点「前往教务系统」复制网址 → 浏览器登录教务系统导出成绩单 xlsx → 发微信「文件传输助手」→ 回到小程序从聊天记录选文件。
-
-### 方式二：在线网页
-
-构建后把 `dist` 目录部署到任意静态托管平台（如 Cloudflare Pages、EdgeOne Pages）即可获得公开链接。
-
-### 方式三：本地离线
-
-`npm run build:h5` 构建后，直接**双击 `dist/index.html`** 即可在浏览器中使用（H5 构建采用相对路径，无需启动本地服务器），也可将 `dist` 整个文件夹压缩后发给他人。
-
-网页版导入文件无需中转：点「前往教务系统」直接跳转登录，导出 xlsx 后回页面从本地下载目录选文件即可。
-
-## 本地开发
-
-```bash
-# 安装依赖
+git clone https://github.com/Augenstern-W/JLU-GPA-calculator.git
+cd JLU-GPA-calculator
 npm install
-
-# 开发模式（网页版，浏览器实时预览）
-npm run dev:h5
-
-# 开发模式（微信开发者工具）
-npm run dev:weapp
-
-# 构建网页版 -> dist/
-npm run build:h5
-
-# 构建小程序版 -> dist/（用微信开发者工具导入项目根目录预览/上传）
-npm run build:weapp
 ```
 
-> 小程序构建后需在 `project.config.json` 中填入自己的 AppID；真机上 tabBar 图标必须为 PNG。
+```
+npm run dev:h5       # 网页版开发预览
+npm run build:h5     # 网页版构建 -> dist/h5
+npm run build:weapp  # 小程序构建 -> dist/weapp
+```
 
-## 成绩单要求
+## 结构
 
-仅支持吉林大学教务系统「成绩查询」模块导出的 `XX成绩查询.xlsx`，且保持原始表头（21 列）不改动。其他格式会提示「未识别到课程数据」。
+```
+src/pages     三个页面：计算 / 指南 / 我的
+src/utils     绩点计算、文件导入、本地存储
+src/styles    主题变量（吉大蓝 #003F95）
+config        Taro 构建配置
+```
 
-## 免责说明
+计算结果仅供参考，以教务系统为准。
 
-本项目为个人自用工具，计算结果仅供参考，以学校教务系统认定为准。项目不联网、不上传、不存储任何用户数据于云端。
-
-## 开发者
-
-- 忘江湖
-- QQ：2464231867
+忘江湖 2464231867@qq.com
